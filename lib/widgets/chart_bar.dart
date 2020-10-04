@@ -13,7 +13,10 @@ class ChartBar extends StatelessWidget {
     return Column(
       children: <Widget>[
         // Shrink label wanneer het te groot wordt.
-        FittedBox(child: Text('\$${spendingAmount.toStringAsFixed(0)}')),
+        Container(
+            height: 20,
+            child: FittedBox(
+                child: Text('\€${spendingAmount.toStringAsFixed(0)}'))),
         SizedBox(
           height: 4,
         ),
@@ -24,8 +27,7 @@ class ChartBar extends StatelessWidget {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 1.0),
-                    color: Color.fromRGBO(220, 220, 220, 1),
+                    color: Color.fromRGBO(240, 240, 240, 1),
                     borderRadius: BorderRadius.circular(20)),
               ),
               FractionallySizedBox(
