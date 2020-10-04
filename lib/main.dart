@@ -40,15 +40,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-final List<Transaction> _userTransaction = [
-  // Transaction(
-  //     id: 't1', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
-  // Transaction(id: 't2', title: 'Weed', amount: 35.91, date: DateTime.now()),
-  // Transaction(
-  //     id: 't1', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
-  // Transaction(id: 't2', title: 'Weed', amount: 35.91, date: DateTime.now()),
-  // Transaction(id: 't1', title: 'New Shoes', amount: 69.99, date: DateTime.now())
-];
+final List<Transaction> _userTransaction = [];
 
 List<Transaction> get _recentTransactions {
   return _userTransaction.where((tx) {
@@ -85,6 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransaction.removeWhere(((tx) => tx.id == id));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recentTransactions),
-            TransactionList(_userTransaction)
+            TransactionList(_userTransaction, _deleteTransaction)
           ],
         ),
       ),
